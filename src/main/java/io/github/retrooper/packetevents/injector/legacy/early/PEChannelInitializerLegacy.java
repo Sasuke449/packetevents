@@ -45,7 +45,7 @@ public class PEChannelInitializerLegacy extends ChannelInitializer<Channel> {
     }
 
     public static void postInitChannel(Channel channel) {
-        PacketDecoderLegacy packetDecoderLegacy = new PacketDecoderLegacy();
+        PacketDecoderLegacy packetDecoderLegacy = new PacketDecoderLegacy((ByteToMessageDecoder) channel.pipeline().get("decoder"));
         channel.pipeline().replace("decoder", PacketEvents.get().decoderName, packetDecoderLegacy);
     }
 
